@@ -1,7 +1,7 @@
 import datetime
 
 from app import db
-from models.core_models import User, Transaction
+from webapp.models.core_models import User, Transaction
 
 # Create the tables based on the imported models
 db.create_all()

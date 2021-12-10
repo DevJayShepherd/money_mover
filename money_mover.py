@@ -1,7 +1,7 @@
 from flask import render_template, request, jsonify, url_for, redirect, session
 from app import app
-from models.core_models import User, Transaction
-from utility.user_management import UserManagement
+from webapp.models.core_models import User, Transaction
+from webapp.utility.user_management import UserManagement
 
 
 @app.route('/')
@@ -26,7 +26,7 @@ def login():
         if User.query.filter_by(email=email).first():
             user = User.query.filter_by(email=email).first()
         else:
-            return jsonify(message="User or password incorrect"), 400
+            return jsonify(message='User or password incorrect'), 400
             # Frontend will do something here like flash message or on API I would raise exception
             # TODO Raise exception or flash message
 
@@ -36,7 +36,7 @@ def login():
             session['email'] = request.form['email']
             return redirect(url_for('homepage'))
         else:
-            return jsonify(message="User or password incorrect"), 400
+            return jsonify(message='User or password incorrect'), 400
             # Frontend will do something here like flash message or on API I would raise exception
             # TODO Raise exception or flash message
 
@@ -60,10 +60,10 @@ def transactions():
 def transaction_details(transaction_id):
     try:
         # Retrieve the current user
-        user = UserManagement.get_current_user(session['email'])
-        # Retrieve a list of transactions for current user
-        the_transaction = Transaction.query.filter_by(id=transaction_id).first()
-        return render_template('transaction_details.html', transaction=the_transaction)
+        if UserManagement.get_current_user(session['email']):
+            # Retrieve a list of transactions for current user
+            the_transaction = Transaction.query.filter_by(id=transaction_id).first()
+            return render_template('transaction_details.html', transaction=the_transaction)
     except KeyError:
         # Happens when no session has been created
         return redirect(url_for('login'))
