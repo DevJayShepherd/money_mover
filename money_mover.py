@@ -47,3 +47,16 @@ def transactions():
     except KeyError:
         # Happens when no session has been created
         return redirect(url_for('login'))
+
+
+@app.route('/activity/details/<transaction_id>')
+def transaction_details(transaction_id):
+    try:
+        # Retrieve the current user
+        user = UserManagement.get_current_user(session['email'])
+        # Retrieve a list of transactions for current user
+        the_transaction = Transaction.query.filter_by(id=transaction_id).first()
+        return render_template('transaction_details.html', transaction=the_transaction)
+    except KeyError:
+        # Happens when no session has been created
+        return redirect(url_for('login'))
