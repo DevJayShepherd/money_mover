@@ -30,4 +30,3 @@ class Transaction(db.Model):
     destination_wallet = db.Column(db.String(120), nullable=False)
     date_sent = db.Column(db.DateTime, onupdate=datetime.now(), nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-

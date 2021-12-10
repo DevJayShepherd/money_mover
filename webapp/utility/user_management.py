@@ -1,4 +1,4 @@
-from models.core_models import User
+from webapp.models.core_models import User
 
 
 class UserManagement:
