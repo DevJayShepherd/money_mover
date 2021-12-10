@@ -16,8 +16,8 @@
   {% for transaction in transactions %}
     <tr>
       <th scope="row">{{ transaction.id }}</th>
-      <td>{{ transaction.amount }}</td>
-      <td><button type="button" class="btn btn-primary">More details</button></td>
+      <td>£{{ transaction.amount }}</td>
+      <td><button type="button" class="btn btn-primary"><a href="/activity/details/{{ transaction.id }}">More Details</a></button></td>
     </tr>
   {% endfor %}
   </tbody>
