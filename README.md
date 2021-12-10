@@ -7,7 +7,7 @@ Tech test for novus by Jay Shepherd
 ## Docker build
 `make docker build`
 
-## Docker run
+## Docker run -- only if stopped recent build ****
 `make docker run`
 
 ## Open webapp
