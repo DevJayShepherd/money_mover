@@ -6,7 +6,14 @@ from utility.user_management import UserManagement
 
 @app.route('/')
 def homepage():
-    return render_template('home_page.html')
+    try:
+        # Retrieve the current user
+        user = UserManagement.get_current_user(session['email'])
+        if user:
+            return render_template('home_page.html')
+    except KeyError:
+        # Happens when no session has been created
+        return redirect(url_for('login'))
 
 
 @app.route('/login', methods=['GET', 'POST'])
