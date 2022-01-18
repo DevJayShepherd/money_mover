@@ -1,5 +1,4 @@
 # money_mover webapp
-Tech test for novus by Jay Shepherd
 
 ## Clone repository
 `git clone https://github.com/YOUR-USERNAME/money_mover.git`
